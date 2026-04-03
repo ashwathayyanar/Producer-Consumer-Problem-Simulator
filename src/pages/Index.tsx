@@ -1,6 +1,7 @@
 import { useSimulation } from "@/hooks/useSimulation";
 import { ControlPanel } from "@/components/simulator/ControlPanel";
 import { BufferVisualization } from "@/components/simulator/BufferVisualization";
+import { FlowDiagram } from "@/components/simulator/FlowDiagram";
 import { ActorsSection } from "@/components/simulator/ActorsSection";
 import { SyncPanel } from "@/components/simulator/SyncPanel";
 import { EventLog } from "@/components/simulator/EventLog";
@@ -46,6 +47,7 @@ const Index = () => {
         {/* Center: Visualization */}
         <main className="space-y-4">
           <BufferVisualization state={state} />
+          <FlowDiagram state={state} />
           <ActorsSection producers={state.producers} consumers={state.consumers} />
           <EventLog log={state.log} />
         </main>
