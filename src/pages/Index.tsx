@@ -47,6 +47,7 @@ const Index = () => {
         {/* Center: Visualization */}
         <main className="space-y-4">
           <BufferVisualization state={state} />
+          <FlowDiagram state={state} />
           <ActorsSection producers={state.producers} consumers={state.consumers} />
           <EventLog log={state.log} />
         </main>
