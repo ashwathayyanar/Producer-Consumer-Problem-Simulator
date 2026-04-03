@@ -1,16 +1,62 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useSimulation } from "@/hooks/useSimulation";
+import { ControlPanel } from "@/components/simulator/ControlPanel";
+import { BufferVisualization } from "@/components/simulator/BufferVisualization";
+import { ActorsSection } from "@/components/simulator/ActorsSection";
+import { SyncPanel } from "@/components/simulator/SyncPanel";
+import { EventLog } from "@/components/simulator/EventLog";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  const {
+    state, start, pause, reset, step,
+    setSpeed, setBufferSize, setProducerCount, setConsumerCount,
+    toggleSync, toggleStepMode,
+  } = useSimulation();
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+    <div className="min-h-screen bg-background p-4 md:p-6">
+      {/* Header */}
+      <header className="mb-6 text-center">
+        <h1 className="text-2xl md:text-3xl font-bold neon-text-cyan">
+          Producer-Consumer Problem Simulator
+        </h1>
+        <p className="text-sm text-muted-foreground mt-1">
+          Visualizing process synchronization with semaphores &amp; mutex locks
+        </p>
+      </header>
+
+      {/* Main Layout */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr_260px] gap-4">
+        {/* Left: Controls */}
+        <aside>
+          <ControlPanel
+            state={state}
+            onStart={start}
+            onPause={pause}
+            onReset={reset}
+            onStep={step}
+            onSetSpeed={setSpeed}
+            onSetBufferSize={setBufferSize}
+            onSetProducerCount={setProducerCount}
+            onSetConsumerCount={setConsumerCount}
+            onToggleSync={toggleSync}
+            onToggleStepMode={toggleStepMode}
+          />
+        </aside>
+
+        {/* Center: Visualization */}
+        <main className="space-y-4">
+          <BufferVisualization state={state} />
+          <ActorsSection producers={state.producers} consumers={state.consumers} />
+          <EventLog log={state.log} />
+        </main>
+
+        {/* Right: Sync Panel */}
+        <aside>
+          <SyncPanel state={state} />
+        </aside>
+      </div>
     </div>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
