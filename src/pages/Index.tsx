@@ -1,6 +1,7 @@
 import { useSimulation } from "@/hooks/useSimulation";
 import { ControlPanel } from "@/components/simulator/ControlPanel";
 import { BufferVisualization } from "@/components/simulator/BufferVisualization";
+import { FlowDiagram } from "@/components/simulator/FlowDiagram";
 import { ActorsSection } from "@/components/simulator/ActorsSection";
 import { SyncPanel } from "@/components/simulator/SyncPanel";
 import { EventLog } from "@/components/simulator/EventLog";
